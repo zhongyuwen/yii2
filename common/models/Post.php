@@ -124,4 +124,12 @@ class Post extends \yii\db\ActiveRecord
         parent::afterDelete();
         Tag::updateFrequency($this->_oldTags, '');
     }
+
+    public function getBeginning()
+    {
+        $tmpStr = strip_tags($this->content);
+        $tmpLen = mb_strlen($tmpStr);
+        $tmpStr = mb_substr($tmpStr, 0, 10, 'utf8');
+        return $tmpStr.($tmpLen>10?'...':'');
+    }
 }
