@@ -24,6 +24,28 @@ use yii\widgets\ListView;
                 ])
             ?>
         </div>
-        <div class="col-md-3">右边</div>
+        <div class="col-md-3">
+            <div class="searchbox">
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>查找文章</li>
+                    <li class="list-group-item"></span>搜索框</li>
+                </ul>
+            </div>
+
+            <div class="tagCloud">
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>标签云</li>
+                    <li class="list-group-item"></span>标签云</li>
+                </ul>
+            </div>
+
+            <div class="searchbox">
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>最新回复</li>
+                    <li class="list-group-item"></span>最新回复</li>
+                </ul>
+            </div>
+
+        </div>
     </div>
 </div>
