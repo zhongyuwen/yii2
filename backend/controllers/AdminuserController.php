@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\SignupForm;
+use backend\models\ResetpwdForm;
 use common\models\Adminuser;
 use common\models\AdminuserSearch;
 use yii\web\Controller;
@@ -73,6 +74,22 @@ class AdminuserController extends Controller
             }
         } else {
             return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionResetpwd($id)
+    {
+        $model = new ResetpwdForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->resetPassword($id))
+            {
+                return $this->redirect(['index']);
+            }
+        } else {
+            return $this->render('resetpwd', [
                 'model' => $model,
             ]);
         }
