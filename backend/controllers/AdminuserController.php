@@ -6,6 +6,8 @@ use Yii;
 use backend\models\SignupForm;
 use backend\models\ResetpwdForm;
 use common\models\Adminuser;
+use common\models\AuthItem;
+use common\models\AuthAssignment;
 use common\models\AdminuserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -142,4 +144,38 @@ class AdminuserController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionPrivilege($id)
+    {
+        $allPrivileges = AuthItem::find()->select(['name','description'])->where(['type'=>1])->orderBy('description')->all();
+        foreach ($allPrivileges as $priv)
+        {
+            $allPrivilegesArray[$priv->name] = $priv->description;
+        }
+
+        $AuthAssignments = AuthAssignment::find()->select(['item_name'])->where(['user_id'=>$id])->all();
+        $AuthAssignmentsArray = array();
+        foreach ($AuthAssignments as $AuthAssignment)
+        {
+            array_push($AuthAssignmentsArray, $AuthAssignment->item_name);
+        }
+
+        if (isset($_POST['newPriv']))
+        {
+            AuthAssignment::deleteAll('user_id=:id',[':id'=>$id]);
+            $newPriv = $_POST['newPriv'];
+            $arrLen = count($newPriv);
+            for ($i=0; $i < $arrLen; $i++) { 
+                $aPriv = new AuthAssignment();
+                $aPriv->item_name = $newPriv[$i];
+                $aPriv->user_id = $id;
+                $aPriv->created_at = time();
+                $aPriv->save();
+            }
+            return $this->redirect(['index']);
+        }
+
+        return $this->render('privilege',['id'=>$id, 'AuthAssignmentsArray'=>$AuthAssignmentsArray, 'allPrivilegesArray'=>$allPrivilegesArray]);
+    }
+    
 }
