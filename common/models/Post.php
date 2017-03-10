@@ -136,7 +136,7 @@ class Post extends \yii\db\ActiveRecord
 
     public function getUrl()
     {
-        return Yii::$app->urlManager->createUrl(['post/index', 'id'=>$this->id, 'title'=>$this->title]);
+        return Yii::$app->urlManager->createUrl(['post/detail', 'id'=>$this->id, 'title'=>$this->title]);
     }
 
     public function getTagLinks()
@@ -152,5 +152,11 @@ class Post extends \yii\db\ActiveRecord
     public function getCommentCount()
     {
         return Comment::find()->where(['post_id'=>$this->id, 'status'=>2])->count();
+    }
+
+    public function getActiveComments()
+    {
+        return $this->hasMany(Comment::className(), ['post_id' => 'id'])
+        ->where('status=:status',[':status'=>2])->orderBy('id DESC');
     }
 }
