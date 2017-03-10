@@ -15,7 +15,10 @@ use common\models\Comment;
         <div class="col-md-9">
             <ol class="breadcrumb">
                 <li><a href="<?= Yii::$app->homeUrl;?>">首页</a></li>
-                <li><a href="<?= Yii::$app->homeUrl;?>?r=post/index">文章列表</a></li>
+                <!-- <li><a href="<?= Yii::$app->homeUrl;?>?r=post/index">文章列表</a></li> -->
+                <!-- <li><a href="<?= Yii::$app->urlManager->createUrl(['post/index']);?>?r=post/index">文章列表</a></li> -->
+                <li><a href="<?= Url::to(['post/index']);?>">文章列表</a></li>
+
                 <li class="active"><?= $model->title?></li>
             </ol>
 
