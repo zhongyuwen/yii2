@@ -100,4 +100,10 @@ class Comment extends \yii\db\ActiveRecord
         $this->status = 2; //设置评论状态为已审核
         return $this->save()?true:false;
     }
+
+    public static function findRecentComments($limit=10)
+    {
+        return self::find()->where(['status'=>2])->orderBy('create_time DESC')->limit($limit)->all();
+    }
+    
 }

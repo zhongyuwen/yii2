@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 use frontend\components\TagsCloudWidget;
+use frontend\components\RctReplyWidget;
 ?>
 
 <div class="container">
@@ -54,7 +55,9 @@ use frontend\components\TagsCloudWidget;
             <div class="searchbox">
                 <ul class="list-group">
                     <li class="list-group-item"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>最新回复</li>
-                    <li class="list-group-item"></span>最新回复</li>
+                    <li class="list-group-item"></span>
+                        <?= RctReplyWidget::widget(['recentComments'=>$recentComments])?>
+                    </li>
                 </ul>
             </div>
 
