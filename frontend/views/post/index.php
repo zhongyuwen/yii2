@@ -28,7 +28,16 @@ use yii\widgets\ListView;
             <div class="searchbox">
                 <ul class="list-group">
                     <li class="list-group-item"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>查找文章</li>
-                    <li class="list-group-item"></span>搜索框</li>
+                    <li class="list-group-item"></span>
+
+                        <form class="form-inline" action="index.php?r=post/index" id="w0" method="get">
+                          <div class="form-group">
+                            <input type="text" class="form-control" name="PostSearch[title]" id="w0input" placeholder="按标题">
+                          </div>
+                          <button type="submit" class="btn btn-default">搜索</button>
+                        </form>
+
+                    </li>
                 </ul>
             </div>
 
