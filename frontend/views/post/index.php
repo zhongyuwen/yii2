@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
+use frontend\components\TagsCloudWidget;
 ?>
 
 <div class="container">
@@ -44,7 +45,9 @@ use yii\widgets\ListView;
             <div class="tagCloud">
                 <ul class="list-group">
                     <li class="list-group-item"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>标签云</li>
-                    <li class="list-group-item"></span>标签云</li>
+                    <li class="list-group-item"></span>
+                        <?= TagsCloudWidget::widget(['tags'=>$tags])?>
+                    </li>
                 </ul>
             </div>
 

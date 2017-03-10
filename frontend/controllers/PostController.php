@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\Post;
+use common\models\Tag;
 use common\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -35,12 +36,15 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
+        $tags = Tag::findTagWeights();
+
         $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'tags' => $tags
         ]);
     }
 
